@@ -1,0 +1,13 @@
+streamlit
+opencv
+tempfile
+xlwings
+tkinter
+pandas
+pyperclip
+pyautogui
+time
+openpyxl
+os
+subprocess
+
