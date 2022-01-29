@@ -10,9 +10,6 @@ import subprocess
 import openpyxl as excel
 import os
 
-from openpyxl import load_workbook
-from openpyxl.formula.translate import Translator
-
 import time,subprocess,platform
 import pyautogui as pa
 import pyperclip
@@ -42,41 +39,40 @@ EDIUSの右上を露出させてください
 uploaded_file = st.file_uploader("choose an excel file...", type='xlsx')
 if uploaded_file is not None:
     
-    bookO = excel.load_workbook(uploaded_file, data_only=True)
-    sheetO = bookO.active
+#      bookO = excel.load_workbook(uploaded_file, data_only=True)
+#      sheetO = bookO.active
     
-    #元の数式
-    sheetO["D2"] = 'デュレーション'
-    sheetO["D3"] = '=LEFT(TEXT(ABS(LEFT(C3,8)-LEFT(B3,8)+(RIGHT(C3,2)-RIGHT(B3,2))/30*"0:0:1"),"hh:mm:ss.00"),8) & TEXT(INT(RIGHT(TEXT(ABS(LEFT(C3,8)-LEFT(B3,8)+(RIGHT(C3,2)-RIGHT(B3,2))/30*"0:0:1"),"hh:mm:ss.00"),3)*30),"!:00")' 
+#     #元の数式
+#     sheetO["D2"] = 'デュレーション'
+#     sheetO["D3"] = '=LEFT(TEXT(ABS(LEFT(C3,8)-LEFT(B3,8)+(RIGHT(C3,2)-RIGHT(B3,2))/30*"0:0:1"),"hh:mm:ss.00"),8) & TEXT(INT(RIGHT(TEXT(ABS(LEFT(C3,8)-LEFT(B3,8)+(RIGHT(C3,2)-RIGHT(B3,2))/30*"0:0:1"),"hh:mm:ss.00"),3)*30),"!:00")' 
 
-    #オートフィル
-    for row_no in range(4, sheetO.max_row + 1):
-        cell_no = f'D{row_no}'
-        sheetO[cell_no] = Translator(sheetO['D3'].value,origin='D3').translate_formula(cell_no)
+#     #オートフィル
+#     for row_no in range(4, sheetO.max_row + 1):
+#         cell_no = f'D{row_no}'
+#         sheetO[cell_no] = Translator(sheetO['D3'].value,origin='D3').translate_formula(cell_no)
 
 
-    st.markdown("ok")
-    cwd = os.getcwd()
+#     st.markdown("ok")
+#     cwd = os.getcwd()
 
-    st.markdown(cwd)
+#     st.markdown(cwd)
 
-    p = os.path.dirname(os.path.abspath("__file__"))
-    st.markdown(p)    
+#     p = os.path.dirname(os.path.abspath("__file__"))
+#     st.markdown(p)    
         
-    bookO.save("susiki.xlsx")
+#     bookO.save("susiki.xlsx")
 
-    path = "susiki.xlsx"
-    wb = xw.Book(path)
-    wb.save()  # ブックの保存
+#     path = "susiki.xlsx"
+#     wb = xw.Book(path)
+#     wb.save()  # ブックの保存
 
-    app = xw.apps.active # ファイルを閉じる
-    xl = xw.apps.active.api
-    xl.Quit()
+#     app = xw.apps.active # ファイルを閉じる
+#     xl = xw.apps.active.api
+#     xl.Quit()
 
 
-    book = excel.load_workbook("susiki.xlsx", data_only=True)
+    book = excel.load_workbook(uploaded_file, data_only=True)
     sheet = book.active
-
 
     lis = [cell.value for cell in sheet["A:A"] if cell.value is not None]
 
