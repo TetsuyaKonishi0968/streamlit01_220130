@@ -1,11 +1,7 @@
 streamlit
 opencv-python-headless
-tkinter
 pandas
 pyperclip
 pyautogui
-time
 openpyxl
-os
-subprocess
 
