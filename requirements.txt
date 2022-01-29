@@ -1,5 +1,5 @@
 streamlit
-opencv==4.0.1
+opencv-python-headless
 xlwings
 tkinter
 pandas
